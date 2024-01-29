@@ -1,0 +1,29 @@
+{%  extends 'base.html' %}
+
+{% block title %} Welcome {%  endblock %}
+
+{% block content %}
+    <div class="pb-6  bg-gray-100">
+        <h3 class="mb-12 text-2xl text-center">POSTINGS</h3>
+
+        <div class="col-span-3">
+            <div class="grid  gap-3">
+                {% for post in posts %}
+                    <div>
+                        <a href="{% url 'post:detail' post.id %}">
+                            <div class=" font-semibold py-4 px-6 p-6 bg-white rounded-b-xl">
+                                Message: {{ post.message }}
+                            </div>
+                            <div class="py-4 px-6 p-6 bg-white rounded-b-xl">
+                                | Likes: <b> {{ post.likes }} </b> &nbsp | Flagged:  <b> {{ post.flagged }} </b> &nbsp |
+                                {% if post.frequency_count %}
+                                    Frequence of Occurances for <i>[{{ query }}] </i> : <b> {{ post.frequency_count }}  </b> |
+                                {%  endif %}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{%  endblock %}
