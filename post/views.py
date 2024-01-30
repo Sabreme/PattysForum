@@ -59,3 +59,25 @@ def detail(request, pk):
     return render(request, 'detail.html', {
         'post': post,
     })
+
+
+@login_required
+def like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if request.user != post.created_by:
+        post.likes = post.likes + 1
+        post.save()
+
+    return redirect('post:detail', pk=pk)
+
+
+@login_required
+def flag(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if not post.flagged:
+        post.flagged= True
+        post.save()
+
+    return redirect('post:detail', pk=pk)
