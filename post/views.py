@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import NewPostForm
 from .models import Post
 from like.models import Like
+from comment.models import Comment
 
 
 @login_required
@@ -57,10 +58,12 @@ def posts(request):
 def detail(request, pk):
     post = Post.objects.filter(Q(pk=pk)).annotate(count_likes=Count('post_likes')).first()
     likes = Like.objects.filter(Q(post=post))
+    comments = Comment.objects.filter(Q(post=post))
 
     return render(request, 'detail.html', {
         'post': post,
         'likes': likes,
+        'comments': comments,
     })
 
 
@@ -75,6 +78,18 @@ def like(request, pk):
 
         like = Like.objects.create(post=post, user=request.user)
         like.save()
+
+    return redirect('post:detail', pk=pk)
+
+
+@login_required
+def comment(request, pk):
+    comment = request.GET.get('comment', '')
+    post = get_object_or_404(Post, pk=pk)
+
+    if comment:
+        comment_obj = Comment.objects.create(comment=comment, post=post, user=request.user)
+        comment_obj.save()
 
     return redirect('post:detail', pk=pk)
 

@@ -3,26 +3,57 @@
 {% block title %}{{ post.name }}{% endblock %}
 
 {% block content %}
-<div class="gap-6">
-    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
-        <h1 class="mb-6 text-3xl">{{ post.message }}</h1>
-        <p class="text-gray-500"><strong>Likes :     </strong>{{ post.count_likes }}</p>
-        <p class="text-gray-500"><strong>Flagged :   </strong>{{ post.flagged }}</p>
-        <p class="text-gray-500"><strong>Created On: </strong>{{ post.created_at }}</p>
-        <p class="text-gray-500"><strong>Created By: </strong>{{ post.created_by.username }}</p>
+    <div class="gap-6">
+        <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+            <h1 class="mb-6 text-3xl">{{ post.message }}</h1>
+            <p class="text-gray-500"><strong>Likes :     </strong>{{ post.count_likes }}</p>
+            <p class="text-gray-500"><strong>Flagged :   </strong>{{ post.flagged }}</p>
+            <p class="text-gray-500"><strong>Created On: </strong>{{ post.created_at }}</p>
+            <p class="text-gray-500"><strong>Created By: </strong>{{ post.created_by.username }}</p>
 
-        <p class="text-gray-500"><strong>Liked By :     </strong>
-            {%  for like in likes %}
-             &nbsp   {{ like.user }} &nbsp  |
-            {% endfor %}
-        </p>
+            <p class="text-gray-500"><strong>Liked By :     </strong>
+                {%  for like in likes %}
+                 &nbsp   {{ like.user }} &nbsp  |
+                {% endfor %}
+            </p>
 
-        <a href="{% url 'post:like' post.id %}" class="mt-2 py-4 px-8 inline-block bg-blue-500 text-lg rounded-xl text-white">Like</a>
+            <a href="{% url 'post:like' post.id %}" class="mt-2 py-4 px-8 inline-block bg-blue-500 text-lg rounded-xl text-white">Like</a>
 
-        {%  if 'post.moderator_users' in perms %}
-            <a href="{% url 'post:flag' post.id %}" class="mt-2 py-4 px-8 inline-block bg-red-500 text-lg rounded-xl text-white">Flag</a>
-        {% endif %}
+            {%  if 'post.moderator_users' in perms %}
+                <a href="{% url 'post:flag' post.id %}" class="mt-2 py-4 px-8 inline-block bg-red-500 text-lg rounded-xl text-white">Flag</a>
+            {% endif %}
+        </div>
     </div>
-</div>
+
+    <div class="col-span-1">
+        <form method="get" action="{% url 'post:comment' post.pk %}">
+            <input name="comment" class="w-1/2 py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Please enter Comment">
+
+            <button class="text-center mt-2 mb-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Comment</button>
+        </form>
+    </div>
+
+    <div class="pb-6  bg-gray-100">
+        <h3 class="mb-12 text-2xl text-center">Comments</h3>
+
+        <div class="col-span-3">
+            <div class=" pb-6 bg-gray-100">
+                {% for comment in comments %}
+                    <div class=" pb-6 bg-gray-100">
+                        <div class=" text-xl font-semibold py-4 px-6 bg-white rounded-t-xl">
+                            Comment: {{ comment.comment }}
+                        </div>
+{#                        <h2 class=" py-4 px-6 p-6 bg-white mb-6 text-2xl rounded-b-xl">{{ comment.comment }}</h2>#}
+                        <div class="py-4 px-6 p-6 bg-white rounded-b-xl">
+                            | Posted By: <b> {{ post.created_by }} </b> &nbsp
+                            | Created At: <b> {{ post.created_at }} </b> &nbsp |
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
 
 {% endblock %}
