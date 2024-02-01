@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import NewPostForm
 from .models import Post
+from like.models import Like
 
 
 @login_required
@@ -29,7 +30,7 @@ def new_post(request):
 
 def posts(request):
     query = request.GET.get('query', '')
-    posts = Post.objects.filter()
+    posts = Post.objects.filter().annotate(count_likes=Count('post_likes'))
 
     if query:
         posts = posts.filter(Q(message__icontains=query))
@@ -52,12 +53,14 @@ def posts(request):
         })
 
 
+@login_required
 def detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    # related_items = Post.objects.filter()
+    post = Post.objects.filter(Q(pk=pk)).annotate(count_likes=Count('post_likes')).first()
+    likes = Like.objects.filter(Q(post=post))
 
     return render(request, 'detail.html', {
         'post': post,
+        'likes': likes,
     })
 
 
@@ -65,9 +68,13 @@ def detail(request, pk):
 def like(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
-    if request.user != post.created_by:
-        post.likes = post.likes + 1
-        post.save()
+    not_already_liked = not Like.objects.filter(Q(user=request.user) & Q(post=post))
+    not_own_post = request.user != post.created_by
+
+    if not_own_post and not_already_liked:
+
+        like = Like.objects.create(post=post, user=request.user)
+        like.save()
 
     return redirect('post:detail', pk=pk)
 
@@ -77,7 +84,7 @@ def flag(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
     if not post.flagged:
-        post.flagged= True
+        post.flagged = True
         post.save()
 
     return redirect('post:detail', pk=pk)

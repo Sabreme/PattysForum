@@ -27,7 +27,9 @@
                                 Message: {{ post.message }}
                             </div>
                             <div class="py-4 px-6 p-6 bg-white rounded-b-xl">
-                                | Likes: <b> {{ post.likes }} </b> &nbsp |
+                                | Posted By: <b> {{ post.created_by }} </b> &nbsp |
+
+                                Likes: <b> {{ post.count_likes }} </b> &nbsp |
 
                                 {%  if post.flagged %}
                                     Flagged:  <b style="color: red"> {{ post.flagged }} </b> &nbsp |
