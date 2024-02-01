@@ -1,0 +1,34 @@
+<div class="pb-6  bg-gray-100">
+
+    <h3 class="mb-12 text-2xl text-center">POSTINGS</h3>
+
+    <div class="col-span-3">
+        <div class="grid  gap-3">
+            {% for post in posts %}
+                <div>
+                    <a href="{% url 'post:detail' post.id %}">
+                        <div class=" text-xl font-semibold py-4 px-6 p-6 bg-white rounded-t-xl">
+                            Message: {{ post.message }}
+                        </div>
+                        <div class="py-4 px-6 p-6 bg-white rounded-b-xl">
+                            | Posted By: <b> {{ post.created_by }} </b> &nbsp |
+
+                            Likes: <b> {{ post.count_likes }} </b> &nbsp |
+
+                            {%  if post.flagged %}
+                                Flagged:  <b style="color: red"> {{ post.flagged }} </b> &nbsp |
+                            {%  else %}
+                                Flagged:  <b > {{ post.flagged }} </b> &nbsp |
+                            {%  endif %}
+
+                            {% if post.frequency_count %}
+                                Frequence of Occurances for <i>[{{ query }}] </i> : <b> {{ post.frequency_count }}  </b> |
+                            {%  endif %}
+
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
