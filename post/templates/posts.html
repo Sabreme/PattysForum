@@ -8,7 +8,7 @@
             <form method="get" action="{% url 'post:posts' %}">
                 <input name="query" class="w-1/2 py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Find string within post(s)">
 
-                <button class="text-center mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+                <button class="text-center mt-2 mb-4 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
                  <a href="{% url 'post:posts' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Clear</a>
             </form>
 
@@ -23,7 +23,7 @@
                 {% for post in posts %}
                     <div>
                         <a href="{% url 'post:detail' post.id %}">
-                            <div class=" font-semibold py-4 px-6 p-6 bg-white rounded-b-xl">
+                            <div class=" text-xl font-semibold py-4 px-6 p-6 bg-white rounded-t-xl">
                                 Message: {{ post.message }}
                             </div>
                             <div class="py-4 px-6 p-6 bg-white rounded-b-xl">
