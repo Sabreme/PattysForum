@@ -103,3 +103,4 @@ def flag(request, pk):
         post.save()
 
     return redirect('post:detail', pk=pk)
+
