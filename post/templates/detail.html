@@ -16,6 +16,8 @@
                  &nbsp   {{ like.user }} &nbsp  |
                 {% endfor %}
             </p>
+            <p class="text-gray-500"><strong>Predicted Likes: </strong>{{ predicted_likes.likes }}</p>
+
 
             <a href="{% url 'post:like' post.id %}" class="mt-2 py-4 px-8 inline-block bg-blue-500 text-lg rounded-xl text-white">Like</a>
 

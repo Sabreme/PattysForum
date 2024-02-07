@@ -6,6 +6,8 @@ from .forms import NewPostForm
 from .models import Post
 from like.models import Like
 from comment.models import Comment
+from ai.models import PredictedLikes
+from ai.views import analytics
 
 
 @login_required
@@ -17,6 +19,8 @@ def new_post(request):
             post = form.save(commit=False)
             post.created_by = request.user
             post.save()
+
+            analytics(post)
 
             return redirect('post:detail', pk=post.id)
 
@@ -59,10 +63,13 @@ def detail(request, pk):
     post = Post.objects.filter(Q(pk=pk)).annotate(count_likes=Count('post_likes')).first()
     likes = Like.objects.filter(Q(post=post))
     comments = Comment.objects.filter(Q(post=post))
+    predicted_likes = PredictedLikes.objects.filter(Q(post=post)).last()
+    # NOTE: the prediction uses the last record as we may adjust the algorithm and need to get the latest result
 
     return render(request, 'detail.html', {
         'post': post,
         'likes': likes,
+        'predicted_likes': predicted_likes,
         'comments': comments,
     })
 
@@ -103,4 +110,3 @@ def flag(request, pk):
         post.save()
 
     return redirect('post:detail', pk=pk)
-
