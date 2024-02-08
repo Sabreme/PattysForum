@@ -13,16 +13,15 @@ class LikeTestCase(TestCase):
         self.test_post = Post.objects.create(message="Test Message 1", created_by=self.user_1)
 
     def test_like_with_same_user_1_fail(self):
-        """ Test the New Like cannot work with same user"""
+        """ Test the New Like object NOT created with same user"""
         client = Client()
         client.login(username='test_user1', password='Abc123')
         response = client.post("/posts/like/1/", {"post": self.test_post, "user": self.user_1})
         self.assertEqual(Like.objects.all().count(), 0)
 
     def test_like_with_different_user_1_pass(self):
-        """ Test the New Like Succeed with new user"""
+        """ Test the New Like object created with new user"""
         client = Client()
         client.login(username='test_user2', password='Abc123')
         response = client.post("/posts/like/1/", {"post": self.test_post, "user": self.user_2})
-        self.assertEqual(response.status_code, 200)
-
+        self.assertEqual(Like.objects.all().count(), 1)
