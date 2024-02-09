@@ -22,25 +22,7 @@ class PostListView(generics.ListAPIView):
     http_method_names = ['get']
 
 
-class PostSearchV1View(generics.ListAPIView):
-    """
-    This is used when search word is used natively as part of the url
-    """
-    serializer_class = PostSerializer
-    http_method_names = ['get']
-
-    def get_queryset(self):
-        search_word = self.kwargs.get("word")
-        filtered_posts = Post.objects.filter(message__icontains=search_word)
-        for post in filtered_posts:
-            post.search_count = post.message.count(search_word)
-
-        reversed_post_list = sorted(filtered_posts, key=lambda p: p.search_count, reverse=True)
-
-        return reversed_post_list
-
-
-class PostSearchV2View(generics.ListAPIView):
+class PostSearchView(generics.ListAPIView):
     """
     This is used when search word is used as query parameter such as in Postman
     """
