@@ -35,4 +35,7 @@ PattysForum
 -> post (Application for managing Posts)
 -> pattysForum (Core Application which hosts configs, settings)
 
-    
+Docmentation Folder
+- Postman Collection
+- Document Overview
+- Project Diagram
