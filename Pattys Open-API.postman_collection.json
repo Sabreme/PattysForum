@@ -1,0 +1,774 @@
+{
+	"info": {
+		"_postman_id": "c1b77c7f-9813-43c7-a555-6ca4a6b3e05b",
+		"name": "Pattys Open-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31697212",
+		"_collection_link": "https://universal-sunset-115444.postman.co/workspace/CPJ-Software~40c9e289-baf3-4645-9cb5-0c3673c2dc8c/collection/31697212-c1b77c7f-9813-43c7-a555-6ca4a6b3e05b?action=share&source=collection_link&creator=31697212"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "posts",
+					"item": [
+						{
+							"name": "search",
+							"item": [
+								{
+									"name": "Search Posts",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/posts/search/?word=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"posts",
+												"search",
+												""
+											],
+											"query": [
+												{
+													"key": "word",
+													"value": ""
+												}
+											]
+										},
+										"description": "This is used when search word is used as query parameter such as in Postman"
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/posts/search/?word=",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"posts",
+														"search",
+														""
+													],
+													"query": [
+														{
+															"key": "word",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"message\": \"<string>\",\n  \"created_by\": \"<integer>\",\n  \"id\": \"<integer>\",\n  \"flagged\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "create",
+							"item": [
+								{
+									"name": "create Post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "message",
+													"value": "<string>",
+													"description": "(Required) "
+												},
+												{
+													"key": "created_by",
+													"value": "<integer>",
+													"description": "(Required) "
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "flagged",
+													"value": "<boolean>"
+												},
+												{
+													"key": "created_at",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/posts/create",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"posts",
+												"create"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "message",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "created_by",
+															"value": "<integer>",
+															"description": "(Required) "
+														},
+														{
+															"key": "id",
+															"value": "<integer>"
+														},
+														{
+															"key": "flagged",
+															"value": "<boolean>"
+														},
+														{
+															"key": "created_at",
+															"value": "<dateTime>"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/posts/create",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"posts",
+														"create"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"message\": \"<string>\",\n  \"created_by\": \"<integer>\",\n  \"id\": \"<integer>\",\n  \"flagged\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "list Posts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/posts/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/posts/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"posts",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"message\": \"<string>\",\n    \"created_by\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"flagged\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"message\": \"<string>\",\n    \"created_by\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"flagged\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "likes",
+					"item": [
+						{
+							"name": "list Likes",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/likes/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"likes",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/likes/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"likes",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"post\": \"<integer>\",\n    \"user\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"post\": \"<integer>\",\n    \"user\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "comments",
+					"item": [
+						{
+							"name": "list Comments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/comments/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"comments",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/comments/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"comments",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"comment\": \"<string>\",\n    \"post\": \"<integer>\",\n    \"user\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"comment\": \"<string>\",\n    \"post\": \"<integer>\",\n    \"user\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Metrics",
+					"item": [
+						{
+							"name": "list Metrics",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/common/metrics/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"common",
+										"metrics",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/comments/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"comments",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"comment\": \"<string>\",\n    \"post\": \"<integer>\",\n    \"user\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"comment\": \"<string>\",\n    \"post\": \"<integer>\",\n    \"user\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "like",
+					"item": [
+						{
+							"name": "create",
+							"item": [
+								{
+									"name": "create Like",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "post",
+													"value": "<integer>",
+													"description": "(Required) "
+												},
+												{
+													"key": "user",
+													"value": "<integer>",
+													"description": "(Required) "
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "created_at",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/like/create",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"like",
+												"create"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "post",
+															"value": "<integer>",
+															"description": "(Required) "
+														},
+														{
+															"key": "user",
+															"value": "<integer>",
+															"description": "(Required) "
+														},
+														{
+															"key": "id",
+															"value": "<integer>"
+														},
+														{
+															"key": "created_at",
+															"value": "<dateTime>"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/like/create",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"like",
+														"create"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"post\": \"<integer>\",\n  \"user\": \"<integer>\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "comment",
+					"item": [
+						{
+							"name": "create",
+							"item": [
+								{
+									"name": "create Comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "comment",
+													"value": "<string>",
+													"description": "(Required) "
+												},
+												{
+													"key": "post",
+													"value": "<integer>",
+													"description": "(Required) "
+												},
+												{
+													"key": "user",
+													"value": "<integer>",
+													"description": "(Required) "
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "created_at",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/comment/create",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"comment",
+												"create"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "comment",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "post",
+															"value": "<integer>",
+															"description": "(Required) "
+														},
+														{
+															"key": "user",
+															"value": "<integer>",
+															"description": "(Required) "
+														},
+														{
+															"key": "id",
+															"value": "<integer>"
+														},
+														{
+															"key": "created_at",
+															"value": "<dateTime>"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/comment/create",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"comment",
+														"create"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"comment\": \"<string>\",\n  \"post\": \"<integer>\",\n  \"user\": \"<integer>\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Sabremetoken.107",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "Patrick",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000"
+		}
+	]
+}
