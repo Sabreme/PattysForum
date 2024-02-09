@@ -30,6 +30,8 @@ class PostSearchView(generics.ListAPIView):
     http_method_names = ['get']
 
     def get_queryset(self):
+
+
         search_word = self.request.GET.get('word')
         filtered_posts = Post.objects.filter(message__icontains=search_word)
         for post in filtered_posts:

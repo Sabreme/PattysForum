@@ -13,13 +13,6 @@ def metrics(request):
     native_datetime = make_aware(datetime.today())
     last_day = native_datetime - timedelta(days=1)
 
-    # midnight = datetime.combine(datetime.today(), time.min)
-    # last_day = midnight - timedelta(days=1)
-
-    # posts = Post.objects.filter(created_at__gte=last_day).all()
-    # likes = Like.objects.filter(created_at__gte=last_day).all()
-    # comments = Comment.objects.filter(created_at__gte=last_day).all()
-
     posts = Post.objects.filter().all()
     likes = Like.objects.filter().all()
     comments = Comment.objects.filter().all()
